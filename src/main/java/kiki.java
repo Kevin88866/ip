@@ -1,6 +1,6 @@
 import java.util.Scanner;
 public class kiki {
-    private static void printMessage(String message){
+    private static void MessagePrinter(String message){
         String horizontalLine = "____________________________________________________________";
         System.out.println(horizontalLine);
         System.out.println(" " + message);
@@ -8,11 +8,12 @@ public class kiki {
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        printMessage(" Hello! I'm kiki\n  What can I do for you?");
+        MessagePrinter(" Hello! I'm kiki\n  What can I do for you?");
         String input;
         while(!(input = sc.nextLine()).equals("bye")){
-            printMessage(input);
+            MessagePrinter(input);
         }
-        printMessage(" Bye. Hope to see you again soon!");
+        MessagePrinter(" Bye. Hope to see you again soon!");
+        sc.close();
     }
 }
