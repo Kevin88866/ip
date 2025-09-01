@@ -17,7 +17,11 @@ public class kiki {
             }else if(input.startsWith("unmark")){
                 unmarkTask(input);
             }else if(input.startsWith("todo")){
-                addTask(input);
+                addTodo(input);
+            }else if(input.startsWith("deadline")){
+                addDeadline(input);
+            }else if(input.startsWith("event")){
+                addEvent(input);
             }
         }
         MessagePrinter(" Bye. Hope to see you again soon!");
@@ -30,15 +34,10 @@ public class kiki {
         System.out.println(horizontalLine);
     }
 
-    private static void addTask(String input) {
-        tasks.add(new Task(input));
-        MessagePrinter(" added: " + input);
-    }
-
     private static void printList() {
         System.out.println(horizontalLine);
         System.out.println(" Here are the tasks in your list:");
-        for(int i = 0; i < tasks.size(); i++) System.out.println(" " + (i+1) + "." + tasks.get(i).getTask());
+        for(int i = 0; i < tasks.size(); i++) System.out.println(" " + (i+1) + "." + tasks.get(i).toString());
         System.out.println(horizontalLine);
     }
 
@@ -46,7 +45,7 @@ public class kiki {
         int index = Integer.parseInt(input.substring(7)) - 1;
         if(index >= 0 && index < tasks.size()){
             tasks.get(index).markNotDone();
-            MessagePrinter(" OK, I've marked this task as not done yet:\n    " + tasks.get(index).getTask());
+            MessagePrinter(" OK, I've marked this task as not done yet:\n    " + tasks.get(index).toString());
         }else{
             MessagePrinter("Invalid task number");
         }
@@ -56,9 +55,33 @@ public class kiki {
         int index = Integer.parseInt(input.substring(5)) - 1;
         if(index >= 0 && index < tasks.size()){
             tasks.get(index).markDone();
-            MessagePrinter(" Nice! I've marked this task as done:\n    " + tasks.get(index).getTask());
+            MessagePrinter(" Nice! I've marked this task as done:\n    " + tasks.get(index).toString());
         }else{
             MessagePrinter("Invalid task number");
         }
+    }
+
+    private static void printTask(Task task){
+        MessagePrinter(" Got it. I've added this task:\n    " + task.toString() + "\n  Now you have " + tasks.size() + " tasks in the list.");
+    }
+
+    private static void addTodo(String input) {
+        Todo task = new Todo(input.substring(5));
+        tasks.add(task);
+        printTask(task);
+    }
+
+    private static void addDeadline(String input) {
+        int index = input.indexOf("/by");
+        Deadline task = new Deadline(input.substring(9,index-1), input.substring(index+4));
+        tasks.add(task);
+        printTask(task);
+    }
+
+    private static void addEvent(String input) {
+        int indexOfFrom = input.indexOf("/from"), indexOfTo = input.indexOf("/to");
+        Event task = new Event(input.substring(6,indexOfFrom-1),input.substring(indexOfFrom+6,indexOfTo-1),input.substring(indexOfTo+4));
+        tasks.add(task);
+        printTask(task);
     }
 }
