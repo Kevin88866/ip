@@ -36,8 +36,8 @@ public class kiki {
 
     private static void printList() {
         System.out.println(horizontalLine);
-        System.out.println(" Here are the tasks in your list:");
-        for(int i = 0; i < tasks.size(); i++) System.out.println(" " + (i+1) + "." + tasks.get(i).toString());
+        System.out.println("  Here are the tasks in your list:");
+        for(int i = 0; i < tasks.size(); i++) System.out.println("  " + (i+1) + ". " + tasks.get(i).toString());
         System.out.println(horizontalLine);
     }
 
