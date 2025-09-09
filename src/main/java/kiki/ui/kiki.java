@@ -1,3 +1,11 @@
+package kiki.ui;
+
+import kiki.exception.KikiException;
+import kiki.task.Deadline;
+import kiki.task.Event;
+import kiki.task.Task;
+import kiki.task.Todo;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -7,7 +15,7 @@ public class kiki {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        MessagePrinter(" Hello! I'm kiki\n  What can I do for you?");
+        MessagePrinter(" Hello! I'm Kiki.kiki\n  What can I do for you?");
         String input;
         while(!(input = sc.nextLine()).equals("bye")){
             try{
@@ -55,7 +63,7 @@ public class kiki {
             throw new KikiException(" OOPS!!! '" + parts[1] + "' is not a valid task number.");
         }
         if(n < 1 || n > tasks.size()){
-            throw new KikiException(" OOPS!!! Task number is out of range. You have " + tasks.size() + " task(S).");
+            throw new KikiException(" OOPS!!! Kiki.task.Task number is out of range. You have " + tasks.size() + " task(S).");
         }
         return n-1;
     }
@@ -103,7 +111,7 @@ public class kiki {
         int index = input.indexOf("/by");
         String work = "", by = "";
         if(index == -1){
-            throw new KikiException(" OOPS!!! Deadline requires '/by <time>'. Example: deadline return book /by Sunday");
+            throw new KikiException(" OOPS!!! Kiki.task.Deadline requires '/by <time>'. Example: deadline return book /by Sunday");
         }else{
             String[] parts = input.substring(8).trim().split("/by",2);
             if(parts.length == 2){
@@ -126,12 +134,12 @@ public class kiki {
         String afterKeyword = (input.length() > 5) ? input.substring(6) : "";
         String[] pFrom = afterKeyword.split("/from",2);
         if(pFrom.length < 2){
-            throw new KikiException(" OOPS!!! Event requires '/from <start>' and '/to <end>'.");
+            throw new KikiException(" OOPS!!! Kiki.task.Event requires '/from <start>' and '/to <end>'.");
         }
         String work = pFrom[0].trim();
         String[] pTo = pFrom[1].split("/to",2);
         if(pTo.length < 2){
-            throw new KikiException(" OOPS!!! Event requires '/to <end>'.");
+            throw new KikiException(" OOPS!!! Kiki.task.Event requires '/to <end>'.");
         }
         String from = pTo[0].trim();
         String to = pTo[1].trim();

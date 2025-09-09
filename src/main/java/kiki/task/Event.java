@@ -1,3 +1,5 @@
+package kiki.task;
+
 public class Event extends Task{
     private String from,to;
     public Event(String task,String from,String to){
