@@ -1,4 +1,6 @@
-abstract class Task{
+package kiki.task;
+
+public abstract class Task{
     protected String task;
     private boolean isDone;
     public Task(String task){
