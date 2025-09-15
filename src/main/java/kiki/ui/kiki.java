@@ -15,7 +15,7 @@ public class kiki {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        MessagePrinter(" Hello! I'm Kiki.kiki\n  What can I do for you?");
+        MessagePrinter(" Hello! I'm Kiki\n  What can I do for you?");
         String input;
         //the loop will never stop until the input is "bye"
         while(!(input = sc.nextLine()).equals("bye")){
@@ -80,7 +80,7 @@ public class kiki {
 
         //this means the number is invalid
         if(n < 1 || n > tasks.size()){
-            throw new KikiException(" OOPS!!! Kiki.task.Task number is out of range. You have " + tasks.size() + " task(S).");
+            throw new KikiException(" OOPS!!! Task number is out of range. You have " + tasks.size() + " task(S).");
         }
 
         return n-1;
@@ -144,7 +144,7 @@ public class kiki {
 
         //when index = -1, the app can't find "/by", throw exception
         if(index == -1){
-            throw new KikiException(" OOPS!!! Kiki.task.Deadline requires '/by <time>'. Example: deadline return book /by Sunday");
+            throw new KikiException(" OOPS!!! Deadline requires '/by <time>'. Example: deadline return book /by Sunday");
         }else{
             String[] parts = input.substring(8).trim().split("/by",2);
 
@@ -179,14 +179,14 @@ public class kiki {
         String[] pFrom = afterKeyword.split("/from",2);
 
         if(pFrom.length < 2){
-            throw new KikiException(" OOPS!!! Kiki.task.Event requires '/from <start>' and '/to <end>'.");
+            throw new KikiException(" OOPS!!! Event requires '/from <start>' and '/to <end>'.");
         }
 
         String work = pFrom[0].trim();
         String[] pTo = pFrom[1].split("/to",2);
 
         if(pTo.length < 2){
-            throw new KikiException(" OOPS!!! Kiki.task.Event requires '/to <end>'.");
+            throw new KikiException(" OOPS!!! Event requires '/to <end>'.");
         }
 
         String from = pTo[0].trim();
