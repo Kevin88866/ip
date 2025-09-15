@@ -4,7 +4,7 @@ package kiki.task;
 
 public abstract class Task{
     protected String task;
-    private boolean isDone;
+    protected boolean isDone;
 
     public Task(String task){
         this.task = task;
@@ -25,4 +25,5 @@ public abstract class Task{
 
     //evey subclasses have different toString function
     public abstract String toString();
+    public abstract String toSaveString();
 }

@@ -10,4 +10,9 @@ public class Todo extends Task{
     public String toString(){
         return "[T]" + getStatusIcon() + " " + task;
     }
+
+    @Override
+    public String toSaveString() {
+        return String.join(" | ", "T", isDone ? "1" : "0", task);
+    }
 }

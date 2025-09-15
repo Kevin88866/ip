@@ -15,4 +15,9 @@ public class Event extends Task{
     public String toString() {
         return "[E]" + getStatusIcon() + " " + task + " (from: " + from + " to: " + to + ")";
     }
+
+    @Override
+    public String toSaveString() {
+        return String.join(" | ", "E", isDone ? "1" : "0", task, from, to);
+    }
 }
