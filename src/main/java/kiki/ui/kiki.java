@@ -5,17 +5,32 @@ import kiki.task.Deadline;
 import kiki.task.Event;
 import kiki.task.Task;
 import kiki.task.Todo;
-
+import kiki.storage.Storage;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class kiki {
     private static final String horizontalLine = "____________________________________________________________";
     private static ArrayList<Task> tasks = new ArrayList<>();
+    private static Storage storage = new Storage("data","kiki.txt");
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         MessagePrinter(" Hello! I'm Kiki.kiki\n  What can I do for you?");
+
+        //load tasks from kiki.txt
+        try {
+            tasks = storage.load();
+        } catch (IOException e) {
+            System.out.println(horizontalLine);
+            System.out.println(" OOPS!!! Your save file is corrupted or unreadable.");
+            System.out.println(" Details: " + e.getMessage());
+            System.out.println(" Starting with an empty task list.");
+            System.out.println(horizontalLine);
+            tasks = new ArrayList<>();
+        }
+
         String input;
         //the loop will never stop until the input is "bye"
         while(!(input = sc.nextLine()).equals("bye")){
@@ -105,15 +120,27 @@ public class kiki {
     private static void unmarkTask(int index) {
         tasks.get(index).markNotDone();
         MessagePrinter(" OK, I've marked this task as not done yet:\n    " + tasks.get(index));
+        saveList(tasks);
     }
 
     private static void markTask(int index) {
         tasks.get(index).markDone();
         MessagePrinter(" Nice! I've marked this task as done:\n    " + tasks.get(index));
+        saveList(tasks);
     }
 
     private static void printTask(Task task){
         MessagePrinter(" Got it. I've added this task:\n    " + task + "\n  Now you have " + tasks.size() + " tasks in the list.");
+    }
+
+    private static void saveList(ArrayList<Task> tasks){
+        try {
+            storage.save(tasks);
+        } catch (IOException e) {
+            System.out.println(horizontalLine);
+            System.out.println(" OOPS!!! Failed to save tasks: " + e.getMessage());
+            System.out.println(horizontalLine);
+        }
     }
 
     private static void addTodo(String input) throws KikiException{
@@ -133,6 +160,7 @@ public class kiki {
         Todo task = new Todo(work);
         tasks.add(task);
         printTask(task);
+        saveList(tasks);
     }
 
     private static void addDeadline(String input) throws KikiException{
@@ -162,6 +190,7 @@ public class kiki {
         Deadline task = new Deadline(work, by);
         tasks.add(task);
         printTask(task);
+        saveList(tasks);
     }
 
     private static void addEvent(String input) throws KikiException{
@@ -204,5 +233,6 @@ public class kiki {
         Event task = new Event(work,from,to);
         tasks.add(task);
         printTask(task);
+        saveList(tasks);
     }
 }
