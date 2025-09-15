@@ -53,6 +53,9 @@ public class kiki {
             addDeadline(input);
         }else if(input.startsWith("event")){
             addEvent(input);
+        }else if(input.startsWith("delete")){
+            int index = parseIndex(input,"delete");
+            deleteTask(index);
         }else{
             throw new KikiException(" OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
@@ -204,5 +207,12 @@ public class kiki {
         Event task = new Event(work,from,to);
         tasks.add(task);
         printTask(task);
+    }
+
+    private static void deleteTask(int index) {
+        MessagePrinter(" Noted. I've removed this task:\n    " +
+                tasks.get(index) + System.lineSeparator() +
+                "  Now you have " + (tasks.size() - 1) + " tasks in the list.");
+        tasks.remove(index);
     }
 }
