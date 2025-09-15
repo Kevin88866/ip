@@ -244,5 +244,6 @@ public class kiki {
                 tasks.get(index) + System.lineSeparator() +
                 "  Now you have " + (tasks.size() - 1) + " tasks in the list.");
         tasks.remove(index);
+        saveList(tasks);
     }
 }

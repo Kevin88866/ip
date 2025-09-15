@@ -1,3 +1,2 @@
 T | 0 | hahaha
-D | 1 | fafafa  | Monday
-E | 0 | kakaka | Monday | Tues
+D | 1 | fafafa   | Monday
