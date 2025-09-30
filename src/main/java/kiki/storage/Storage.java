@@ -10,6 +10,7 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
+import kiki.exception.KikiException;
 import kiki.task.Deadline;
 import kiki.task.Event;
 import kiki.task.Task;
@@ -77,11 +78,15 @@ public class Storage {
                     }
                     case "D": {
                         if (p.length >= 4) {
-                            Task t = new Deadline(p[2], p[3]);
-                            if (done) {
-                                t.markDone();
+                            try {
+                                Task t = new Deadline(p[2], p[3]);
+                                if (done) {
+                                    t.markDone();
+                                }
+                                tasks.add(t);
+                            } catch (KikiException e) {
+                                throw new IOException("Invalid event dates (expect yyyy-mm-dd). Line: " + line, e);
                             }
-                            tasks.add(t);
                         } else {
                             throw new IOException("Corrupted save file at line " + lineNumber + ": " + line);
                         }
@@ -89,13 +94,17 @@ public class Storage {
                     }
                     case "E": {
                         if (p.length >= 5) {
-                            Task t = new Event(p[2], p[3], p[4]);
-                            if (done) {
-                                t.markDone();
+                            try {
+                                Task t = new Event(p[2], p[3], p[4]);
+                                if (done) {
+                                    t.markDone();
+                                }
+                                tasks.add(t);
+                            } catch (KikiException e) {
+                                throw new IOException("Invalid event dates (expect yyyy-mm-dd). Line: " + line, e);
                             }
-                            tasks.add(t);
                         } else {
-                            throw new IOException("Corrupted save file at line " + lineNumber + ": " + line);
+                            throw new IOException("Malformed event record: " + line);
                         }
                         break;
                     }

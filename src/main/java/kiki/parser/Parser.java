@@ -1,5 +1,8 @@
 package kiki.parser;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 import kiki.command.AddDeadlineCommand;
 import kiki.command.AddEventCommand;
 import kiki.command.AddTodoCommand;
@@ -8,8 +11,10 @@ import kiki.command.DeleteCommand;
 import kiki.command.ExitCommand;
 import kiki.command.ListCommand;
 import kiki.command.MarkCommand;
+import kiki.command.OnDateCommand;
 import kiki.command.UnmarkCommand;
 import kiki.exception.KikiException;
+import kiki.time.Dates;
 
 /**
  * Parses raw user input strings into concrete {@link Command} objects.
@@ -35,15 +40,15 @@ public class Parser {
             return new ListCommand();
         }
         if (s.startsWith("mark")) {
-            int idx0 = parseIndexLikeYourFunction(s, "mark");
+            int idx0 = parseIndex(s, "mark");
             return new MarkCommand(idx0);
         }
         if (s.startsWith("unmark")) {
-            int idx0 = parseIndexLikeYourFunction(s, "unmark");
+            int idx0 = parseIndex(s, "unmark");
             return new UnmarkCommand(idx0);
         }
         if (s.startsWith("delete")) {
-            int idx0 = parseIndexLikeYourFunction(s, "delete");
+            int idx0 = parseIndex(s, "delete");
             return new DeleteCommand(idx0);
         }
         if (s.startsWith("todo")) {
@@ -94,6 +99,19 @@ public class Parser {
             }
             return new AddEventCommand(work, from, to);
         }
+        // Stretch goal: on <yyyy-mm-dd>
+        if (s.startsWith("on")) {
+            String[] parts = s.split("\\s+");
+            if (parts.length < 2) {
+                throw new KikiException(" OOPS!!! Please provide a date. Usage: on yyyy-mm-dd");
+            }
+            try {
+                LocalDate date = LocalDate.parse(parts[1], Dates.INPUT);
+                return new OnDateCommand(date);
+            } catch (DateTimeParseException ex) {
+                throw new KikiException(" OOPS!!! Invalid date. Please use yyyy-mm-dd.");
+            }
+        }
 
         throw new KikiException(" OOPS!!! I'm sorry, but I don't know what that means :-(");
     }
@@ -108,7 +126,7 @@ public class Parser {
      * @return zero-based index
      * @throws KikiException if the number is missing or not an integer
      */
-    private static int parseIndexLikeYourFunction(String input, String cmd) throws KikiException {
+    private static int parseIndex(String input, String cmd) throws KikiException {
         int n = inputSplitter(input, cmd);
         return n - 1; // zero-based
     }

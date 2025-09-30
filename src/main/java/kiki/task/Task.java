@@ -43,6 +43,15 @@ public abstract class Task {
         return isDone ? "[X]" : "[ ]";
     }
 
-    public abstract String toString();
+    /** @return the textual description of this task. */
+    public String getDescription() {
+        return task;
+    }
+
+    /** Concrete toString used by subclasses via super.toString(). */
+    public String toString() {
+        return getStatusIcon() + " " + task;
+    }
+
     public abstract String toSaveString();
 }

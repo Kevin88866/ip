@@ -1,5 +1,10 @@
 package kiki.task;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
+import kiki.exception.KikiException;
+import kiki.time.Dates;
 /**
  * Represents an Event task with a start and end time.
  * <p>
@@ -7,8 +12,8 @@ package kiki.task;
  * </p>
  */
 public class Event extends Task {
-    private final String from;
-    private final String to;
+    private final LocalDate from;
+    private final LocalDate to;
 
     /**
      * Constructs an Event task.
@@ -17,10 +22,50 @@ public class Event extends Task {
      * @param from start time of the event.
      * @param to end time of the event.
      */
-    public Event(String task, String from, String to) {
+    public Event(String task, LocalDate from, LocalDate to) throws KikiException {
         super(task);
+        if (to.isBefore(from)) {
+            throw new KikiException(" OOPS!!! Event end date cannot be before start date.");
+        }
         this.from = from;
         this.to = to;
+    }
+
+    /**
+     * Convenience constructor for storage/backward compatibility.
+     * Both dates must be in {@code yyyy-MM-dd}.
+     */
+    public Event(String description, String from, String to) throws KikiException {
+        super(description);
+        try {
+            LocalDate f = LocalDate.parse(from, Dates.INPUT);
+            LocalDate t = LocalDate.parse(to, Dates.INPUT);
+            if (t.isBefore(f)) {
+                throw new KikiException(" OOPS!!! Event end date cannot be before start date.");
+            }
+            this.from = f;
+            this.to = t;
+        } catch (DateTimeParseException ex) {
+            throw new KikiException(" OOPS!!! Invalid date for event. Please use yyyy-mm-dd.");
+        }
+    }
+
+    /** @return start date. */
+    public LocalDate getFrom() {
+        return from;
+    }
+
+    /** @return end date. */
+    public LocalDate getTo() {
+        return to;
+    }
+
+    /** @return ISO strings for storage. */
+    public String getFromIso() {
+        return from.format(Dates.INPUT);
+    }
+    public String getToIso() {
+        return to.format(Dates.INPUT);
     }
 
     /**
@@ -30,16 +75,15 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + getStatusIcon() + " " + task + " (from: " + from + " to: " + to + ")";
+        return "[E]" + super.toString()
+                + " (from: " + Dates.pretty(from)
+                + " to: " + Dates.pretty(to) + ")";
     }
 
-    /**
-     * Returns a string formatted for saving to disk.
-     *
-     * @return save string in the format "E | doneFlag | description | from | to".
-     */
     @Override
     public String toSaveString() {
-        return String.join(" | ", "E", isDone ? "1" : "0", task, from, to);
+        // Format: E | 0 | description | yyyy-MM-dd | yyyy-MM-dd
+        return "E | " + (isDone ? "1" : "0") + " | " + task
+                + " | " + getFromIso() + " | " + getToIso();
     }
 }

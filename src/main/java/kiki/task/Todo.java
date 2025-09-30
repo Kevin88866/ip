@@ -23,7 +23,7 @@ public class Todo extends Task {
      */
     @Override
     public String toString() {
-        return "[T]" + getStatusIcon() + " " + task;
+        return "[T]" + super.toString();
     }
 
     @Override

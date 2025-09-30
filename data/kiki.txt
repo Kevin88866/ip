@@ -1,5 +1,3 @@
-T | 1 | hahaha
-D | 0 | fafafa    | Monday
-T | 0 | study
-E | 0 | sleep | 1 | 2
-D | 0 | haha | 2
+D | 0 | return book  | 2019-10-15
+T | 0 | project
+E | 0 | project meeting | 2019-10-14 | 2019-10-16
