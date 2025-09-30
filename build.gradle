@@ -29,8 +29,7 @@ test {
 }
 
 application {
-    mainClass.set("seedu.duke.Duke")
-    mainClass = 'kiki.ui.kiki'
+    mainClass.set("kiki.Kiki")
 }
 
 shadowJar {
@@ -44,4 +43,12 @@ run{
 
 checkstyle{
     toolVersion = '11.0.0'
+}
+
+shadowJar {
+    archiveFileName = 'kiki.jar'
+}
+
+run {
+    enableAssertions = true
 }

@@ -1,4 +1,4 @@
-package kiki.ui;
+package kiki;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

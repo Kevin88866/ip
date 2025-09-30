@@ -1,2 +1,5 @@
-T | 0 | hahaha
-D | 1 | fafafa   | Monday
+T | 1 | hahaha
+D | 0 | fafafa    | Monday
+T | 0 | study
+E | 0 | sleep | 1 | 2
+D | 0 | haha | 2
