@@ -9,6 +9,7 @@ import kiki.command.AddTodoCommand;
 import kiki.command.Command;
 import kiki.command.DeleteCommand;
 import kiki.command.ExitCommand;
+import kiki.command.FindCommand;
 import kiki.command.ListCommand;
 import kiki.command.MarkCommand;
 import kiki.command.OnDateCommand;
@@ -99,7 +100,6 @@ public class Parser {
             }
             return new AddEventCommand(work, from, to);
         }
-        // Stretch goal: on <yyyy-mm-dd>
         if (s.startsWith("on")) {
             String[] parts = s.split("\\s+");
             if (parts.length < 2) {
@@ -111,6 +111,13 @@ public class Parser {
             } catch (DateTimeParseException ex) {
                 throw new KikiException(" OOPS!!! Invalid date. Please use yyyy-mm-dd.");
             }
+        }
+        if (s.startsWith("find")) {
+            String q = (s.length() > 4) ? s.substring(5).trim() : "";
+            if (q.isEmpty()) {
+                throw new KikiException(" OOPS!!! Please provide a keyword. Usage: find <keyword>");
+            }
+            return new FindCommand(q);
         }
 
         throw new KikiException(" OOPS!!! I'm sorry, but I don't know what that means :-(");

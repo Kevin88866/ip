@@ -58,7 +58,7 @@ public class Storage {
                     if (line.isEmpty()) {
                         continue;
                     }
-                    String[] p = line.split("\\S*\\|\\s*");
+                    String[] p = line.split("\\s*\\|\\s*");
 
                     if (p.length < 3) {
                         throw new IOException("Corrupted save file at line " + lineNumber + ": " + line);
