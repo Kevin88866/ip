@@ -1,4 +1,4 @@
-# kiki.ui.kiki User Guide
+# kiki.ui.Kiki User Guide
 
 // Update the title above to match the actual product name
 

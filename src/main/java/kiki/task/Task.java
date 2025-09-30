@@ -1,29 +1,48 @@
 package kiki.task;
-//class task
-//abstract class, superclass of deadline, event, todo
 
-public abstract class Task{
+/**
+ * Represents an abstract task in the task manager.
+ * <p>
+ * This is the base class for all task types, including:
+ * <ul>
+ *     <li>{@link Todo}</li>
+ *     <li>{@link Deadline}</li>
+ *     <li>{@link Event}</li>
+ * </ul>
+ * Each task has a description and a completion status.
+ * </p>
+ */
+public abstract class Task {
     protected String task;
     protected boolean isDone;
 
-    public Task(String task){
+    /**
+     * Constructs a Task with the given description.
+     *
+     * @param task the description of the task.
+     */
+    public Task(String task) {
         this.task = task;
         this.isDone = false;
     }
 
-    public void markDone(){
+    public void markDone() {
         isDone = true;
     }
 
-    public void markNotDone(){
+    public void markNotDone() {
         isDone = false;
     }
 
-    public String getStatusIcon(){
-        return isDone? "[X]" : "[ ]";
+    /**
+     * Returns the status icon for the task.
+     *
+     * @return "X" if done, otherwise a space.
+     */
+    public String getStatusIcon() {
+        return isDone ? "[X]" : "[ ]";
     }
 
-    //evey subclasses have different toString function
     public abstract String toString();
     public abstract String toSaveString();
 }
