@@ -42,7 +42,7 @@ If you are a developer, see the project overview in the root `https://github.com
 - A terminal (macOS/Linux/Windows PowerShell/WSL)
 
 #### Option 1: Run the Prebuilt JAR (Recommended for Users)
-Download the latest release from [GitHub Releases](`https://github.com/Kevin88866/ip/releases/tag/A-Release`) and run:
+Download the latest release from [GitHub Releases](https://github.com/Kevin88866/ip/releases/tag/A-Release) and run:
 
 ```bash
 java -jar kiki.jar
