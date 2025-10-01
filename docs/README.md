@@ -3,7 +3,7 @@
 Kiki is a **command-line task manager** for tracking simple todos, deadlines, and events directly from your terminal.  
 This page shows how to install, run, and use Kiki’s features step by step.
 
-If you are a developer, see the project overview in the root `https://github.com/Kevin88866/ip/blob/A-Release/README.md`
+If you are a developer, see the project overview in the root [Readme.md](https://github.com/Kevin88866/ip/blob/A-Release/README.md)
 
 ---
 
