@@ -8,10 +8,10 @@ import kiki.ui.Ui;
 /** Command that signals the application to exit. */
 public class ExitCommand extends Command {
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws KikiException {
-        // No-op; the loop will end after isExit() returns true.
-    }
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws KikiException { }
 
     @Override
-    public boolean isExit() { return true; }
+    public boolean isExit() {
+        return true;
+    }
 }
