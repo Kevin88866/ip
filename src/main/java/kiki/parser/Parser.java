@@ -63,7 +63,7 @@ public class Parser {
             int idx = s.indexOf("/by");
             if (idx == -1) {
                 throw new KikiException(" OOPS!!! Deadline requires '/by <time>'. "
-                        + "Example: deadline return book /by Sunday");
+                        + "Example: deadline return book /by 2025-9-30");
             }
             String[] parts = s.substring(8).trim().split("/by", 2);
             String work = (parts.length >= 1) ? parts[0].trim() : "";

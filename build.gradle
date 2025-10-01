@@ -33,8 +33,12 @@ application {
 }
 
 shadowJar {
-    archiveBaseName = "duke"
-    archiveClassifier = null
+    manifest {
+        attributes('Main-Class': 'kiki.Kiki')
+    }
+    archiveBaseName.set('ip')
+    archiveVersion.set('')
+    archiveClassifier.set('')
 }
 
 run{

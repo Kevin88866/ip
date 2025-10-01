@@ -85,7 +85,7 @@ public class Storage {
                                 }
                                 tasks.add(t);
                             } catch (KikiException e) {
-                                throw new IOException("Invalid event dates (expect yyyy-mm-dd). Line: " + line, e);
+                                throw new IOException("Invalid deadline dates (expect yyyy-mm-dd). Line: " + line, e);
                             }
                         } else {
                             throw new IOException("Corrupted save file at line " + lineNumber + ": " + line);

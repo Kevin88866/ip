@@ -38,7 +38,7 @@ public class Ui {
     }
 
     public void showWelcome() {
-        messagePrinter(" Hello! I'm Kiki.kiki\n  What can I do for you?");
+        messagePrinter(" Hello! I'm Kiki\n  What can I do for you?");
     }
 
     public void showBye() {
