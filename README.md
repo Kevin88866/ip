@@ -4,7 +4,7 @@ Kiki is a simple, testable, and extensible **command-line task manager** written
 It supports **Todos / Deadlines / Events**, case-insensitive **Find**, date filtering via **`on <date>`**, and automatic **persistence**—all structured with clean OOP (Parser → Command → Model/Storage/UI) and full Javadoc.
 
 > **User Guide:** See [`docs/README.md`](docs/README.md).  
-> **GitHub Pages (after enabled):** `https://kevin88866.github.io/ip/`
+> **GitHub Pages:** `https://kevin88866.github.io/ip/`
 
 ---
 

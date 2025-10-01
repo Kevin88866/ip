@@ -3,7 +3,7 @@
 Kiki is a **command-line task manager** for tracking simple todos, deadlines, and events directly from your terminal.  
 This page shows how to install, run, and use Kiki’s features step by step.
 
-If you are a developer, see the project overview in the root [`README.md`](../README.md).
+If you are a developer, see the project overview in the root `https://github.com/Kevin88866/ip/blob/A-Release/README.md`
 
 ---
 
@@ -42,7 +42,7 @@ If you are a developer, see the project overview in the root [`README.md`](../RE
 - A terminal (macOS/Linux/Windows PowerShell/WSL)
 
 #### Option 1: Run the Prebuilt JAR (Recommended for Users)
-Download the latest release from [GitHub Releases](../../releases) and run:
+Download the latest release from [GitHub Releases](`https://github.com/Kevin88866/ip/releases/tag/A-Release`) and run:
 
 ```bash
 java -jar kiki.jar
