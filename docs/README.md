@@ -67,7 +67,7 @@ java -cp out kiki.Kiki
 # from project root
 Get-ChildItem -Recurse src -Filter *.java | ForEach-Object { $_.FullName } | Set-Content sources.txt
 mkdir out -ErrorAction SilentlyContinue
-javac -d out @sources.txt
+javac -d out (Get-Content sources.txt)
 
 # run
 java -cp out kiki.Kiki
